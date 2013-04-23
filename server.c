@@ -115,10 +115,10 @@ void Read(int sd, char *buf)
 void Write(int sd, char zprava[])
 {
 	//odeslu zpravu klientovi
-	if( write(sd,zprava,strlen(zprava)) < 0 )
+   if( write(sd,zprava,strlen(zprava)) < 0 )
    {
       fprintf(stderr, "Chyba: Nepodarilo se odeslat zpravu klientovi!\n");
-	}
+   }
 }
 
 /*
